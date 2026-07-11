@@ -1,0 +1,978 @@
+<!DOCTYPE html>    
+<html lang="en">    
+<head>    
+  <meta charset="UTF-8">    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  
+  <!-- SEO & Open Graph Metadata -->
+  <title>IN-JOY Burger | Addis Ababa's Favorite Smash Burgers</title>    
+  <meta name="description" content="Official IN-JOY Burger portal. Order our signature Big Joy, Deluxe, and Crispy chicken sub sandwiches. Sourced from 100% fresh local beef in Addis Ababa. Call 664 for express delivery!">
+  <meta name="keywords" content="IN-JOY burger, IN JOY Addis Ababa, IN-JOY delivery, Bole Edna Mall, Bisrate Gabriel, burger Ethiopia, 664 delivery, Call to order food Addis">
+  <meta name="author" content="IN-JOY Burger">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://t.me/InJoyBurger">
+  <meta property="og:title" content="IN-JOY Burger | Big Taste. Real Joy. Made Fresh.">
+  <meta property="og:description" content="Order fresh local beef smash burgers, wings, and sub sandwiches. Fast delivery across Addis Ababa. Dial 664 now!">
+  <meta property="og:image" content="1000024041.jpg">
+
+  <!-- Tailwind CSS -->    
+  <script src="https://cdn.tailwindcss.com"></script>    
+      
+  <!-- Phosphor Icons -->    
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>    
+    
+  <style>    
+    @keyframes float {    
+      0% { transform: translateY(0px) rotate(0deg); }    
+      50% { transform: translateY(-8px) rotate(0.5deg); }    
+      100% { transform: translateY(0px) rotate(0deg); }    
+    }    
+    @keyframes slide-up {    
+      from { transform: translateY(100%); opacity: 0; }    
+      to { transform: translateY(0); opacity: 1; }    
+    }
+    @keyframes custom-marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-float {    
+      animation: float 6s ease-in-out infinite;    
+    }    
+    .animate-slide-up {    
+      animation: slide-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;    
+    }
+    .animate-marquee {
+      animation: custom-marquee 20s linear infinite;
+      display: flex;
+      width: max-content;
+    }
+    .hide-scroll::-webkit-scrollbar {    
+      display: none;    
+    }    
+    html, body {    
+      max-width: 100vw;    
+      overflow-x: hidden;    
+      scroll-behavior: smooth;    
+      background-color: #F9F8F6;    
+      color: #1A1A1A;    
+    }    
+    ::selection {    
+      background-color: #E60000;    
+      color: white;    
+    }    
+    #mobile-menu {    
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);    
+      transform: translateY(-100%);    
+    }    
+    #mobile-menu.open {    
+      transform: translateY(0);    
+    }    
+    .logo-blend {    
+      mix-blend-mode: multiply;    
+    }    
+    .review-card {    
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;    
+      transform-style: preserve-3d;    
+      will-change: transform;    
+    }    
+    .review-card > * {    
+      transform: translateZ(30px);    
+    }    
+    .reveal {    
+      opacity: 0;    
+      transform: translateY(30px);    
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);    
+    }    
+    .reveal.active {    
+      opacity: 1;    
+      transform: translateY(0);    
+    }    
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #E60000;
+    }
+  </style>    
+</head>    
+<body class="font-sans antialiased relative">    
+    
+  <!-- NAVIGATION BAR -->    
+  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4 transform-gpu">    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center gap-4">    
+      <div class="flex items-center gap-3 z-50 shrink-0 cursor-pointer" onclick="navigateTo('home')" aria-label="Go to Home Page">    
+        <div class="relative w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center shrink-0">    
+          <img src="1000024041.jpg" alt="IN-JOY Logo" class="w-full h-full object-contain logo-blend" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\'0 0 500 500\' class=\'w-full h-full\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'250\' cy=\'250\' r=\'170\' stroke=\'#FFCC00\' stroke-width=\'28\' fill=\'none\' /><path d=\'M115 420 L235 190 Q255 140 275 260 Q295 330 335 190 L385 80\' stroke=\'#E60000\' stroke-width=\'46\' stroke-linecap=\'square\' stroke-linejoin=\'miter\' stroke-miterlimit=\'4\' fill=\'none\' /></svg>';" />    
+        </div>    
+        <div class="flex flex-col leading-none">    
+          <span id="nav-brand-name" class="font-black text-xl sm:text-2xl tracking-tighter uppercase italic transform -skew-x-6 text-[#E60000]">    
+            IN-JOY    
+          </span>    
+          <span id="nav-brand-sub" class="font-bold text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#1A1A1A]">    
+            Burger    
+          </span>    
+        </div>    
+      </div>    
+    
+      <div class="hidden md:flex items-center gap-8 font-bold text-sm uppercase tracking-wide shrink-0 text-[#1A1A1A]">    
+        <button onclick="navigateTo('home')" class="hover:text-[#E60000] transition-colors nav-link" data-target="home">Home</button>    
+        <button onclick="navigateTo('menu')" class="hover:text-[#E60000] transition-colors nav-link" data-target="menu">Menu</button>    
+        <button onclick="navigateTo('locations')" class="hover:text-[#E60000] transition-colors nav-link" data-target="locations">Locations</button>    
+      </div>    
+    
+      <div class="flex items-center gap-2 sm:gap-4 z-50 shrink-0 text-[#1A1A1A]">    
+        <a href="tel:664" class="bg-[#E60000] text-white px-5 py-2.5 rounded-full font-black text-xs sm:text-sm uppercase flex items-center gap-2 shadow-md hover:bg-[#CC0000] transition-colors">
+          <i class="ph-bold ph-phone text-lg"></i>
+          <span>Call 664</span>
+        </a>
+        <button class="md:hidden p-2" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu">    
+          <i id="menu-icon" class="ph-bold ph-list text-2xl" aria-hidden="true"></i>    
+        </button>    
+      </div>    
+    </div>    
+  </nav>    
+    
+  <!-- Mobile Menu Overlay -->    
+  <div id="mobile-menu" class="fixed inset-0 bg-[#1A1A1A] z-40 flex flex-col justify-center items-center text-white pt-20 px-6">    
+    <div class="flex flex-col items-center gap-8 text-4xl sm:text-5xl font-black uppercase tracking-tighter italic w-full text-center">    
+      <button class="hover:text-[#E60000] transform -skew-x-6 w-full" onclick="navigateTo('home')">Home</button>    
+      <button class="hover:text-[#E60000] transform -skew-x-6 w-full" onclick="navigateTo('menu')">Menu</button>    
+      <button class="hover:text-[#E60000] transform -skew-x-6 w-full" onclick="navigateTo('locations')">Locations</button>    
+      <div class="w-16 h-1 bg-[#FFCC00] my-2"></div>    
+      <a href="tel:664" class="bg-[#E60000] text-white px-8 py-4 rounded-full text-xl flex items-center justify-center gap-2 transform -skew-x-6 w-full max-w-xs cursor-pointer shadow-lg shadow-[#E60000]/20 border border-white/20">    
+        <span class="transform skew-x-6 flex items-center gap-2"><i class="ph-bold ph-phone text-2xl"></i> Call 664</span>    
+      </a>    
+    </div>    
+  </div>    
+    
+  <div id="toast-container" class="fixed top-24 left-1/2 -translate-x-1/2 z-[120] flex flex-col gap-2 pointer-events-none"></div>    
+    
+  <!-- 1. HOME PAGE VIEW -->    
+  <main id="page-home" class="page-view block pb-24">    
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-[90vh]">    
+      <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-[#E60000]/5 rounded-full blur-3xl -translate-y-1/4 translate-x-1/4"></div>    
+          
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">    
+        <div class="z-10 flex flex-col items-center sm:items-start text-center sm:text-left pt-10 reveal">    
+          <div class="inline-flex items-center gap-2 bg-[#1A1A1A] text-white px-4 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider mb-6 shadow-lg">    
+            <i class="ph-fill ph-fire text-[#FFCC00] text-lg"></i>    
+            Addis Ababa's Favorite    
+          </div>    
+          <h1 class="text-[11vw] xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-6 text-[#1A1A1A] italic">    
+            Big Taste.<br/>    
+            <span class="text-[#E60000]">Real Joy.</span><br/>    
+            Made Fresh.    
+          </h1>    
+          <p class="text-base sm:text-lg lg:text-xl text-[#1A1A1A]/70 font-medium mb-10 max-w-md sm:max-w-lg">    
+            100% fresh local beef, house-baked buns, and our signature In-Joy sauce. Experience the burger revolution today.    
+          </p>    
+          <div id="home-primary-buttons" class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">    
+            <a href="tel:664" class="bg-[#E60000] hover:bg-[#CC0000] text-white font-bold text-base sm:text-lg px-8 py-4 rounded-full transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 shadow-xl shadow-[#E60000]/20 transform -skew-x-6 cursor-pointer">    
+              <span class="transform skew-x-6 flex items-center gap-2"><i class="ph-bold ph-phone text-xl"></i> Call 664 to Order</span>    
+            </a>    
+            <button onclick="navigateTo('menu')" class="bg-white hover:bg-zinc-50 text-[#1A1A1A] border-2 border-black/10 font-bold text-base sm:text-lg px-8 py-4 rounded-full transition-all hover:scale-105 active:scale-95 transform -skew-x-6">    
+              <span class="transform skew-x-6 block">View Menu</span>    
+            </button>    
+          </div>    
+        </div>    
+    
+        <div class="relative z-10 w-full flex justify-center lg:justify-end mt-12 lg:mt-0 px-4 sm:px-0 reveal">    
+          <div class="absolute bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-8 sm:h-12 bg-black/15 blur-2xl rounded-full"></div>    
+          <img     
+            src="1000024072.jpg"     
+            alt="The In-Joy Signature Burger"     
+            class="w-full max-w-[280px] xs:max-w-xs sm:max-w-lg lg:max-w-xl object-cover rounded-[2rem] sm:rounded-[3rem] animate-float shadow-2xl shadow-black/20 relative z-10"    
+            style="clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%)" 
+          />    
+          <div class="absolute -right-2 sm:-right-4 top-1/4 bg-white p-3 sm:p-4 rounded-2xl shadow-xl z-20 animate-bounce" style="animation-duration: 3s;">    
+            <div class="flex items-center gap-1.5 sm:gap-2">    
+              <i class="ph-fill ph-star text-[#FFCC00] text-lg"></i>    
+              <span class="font-bold text-xs sm:text-sm">Top Rated</span>    
+            </div>    
+          </div>    
+        </div>    
+      </div>    
+    </section>    
+    
+    <!-- SINGLE LINE Marquee (No Clipping, Perfectly Centered) -->    
+    <section class="bg-[#1A1A1A] text-white overflow-hidden relative border-y-4 border-[#E60000] h-[80px] sm:h-[100px] flex items-center reveal transform-gpu">    
+      <div class="animate-marquee h-full flex items-center">    
+        <!-- Block 1 -->
+        <div class="flex items-center whitespace-nowrap h-full">    
+          <span class="text-xl sm:text-3xl font-black uppercase tracking-tighter italic text-white mx-8 flex items-center gap-4">
+            🔥 WE ARE OPEN <span class="text-[#FFCC00]">•</span> 20% DISCOUNT FOR FAST & HOT DELIVERY TODAY
+          </span>
+          <span class="text-[#E60000] text-2xl sm:text-4xl font-black mx-4">///</span>    
+          
+          <span class="text-xl sm:text-3xl font-black uppercase tracking-tighter italic text-white mx-8 flex items-center gap-4">
+            🔥 WE ARE OPEN <span class="text-[#FFCC00]">•</span> 20% DISCOUNT FOR FAST & HOT DELIVERY TODAY
+          </span>
+          <span class="text-[#E60000] text-2xl sm:text-4xl font-black mx-4">///</span> 
+        </div>
+        <!-- Block 2 (Exact Duplicate for Seamless Loop) -->
+        <div class="flex items-center whitespace-nowrap h-full">    
+          <span class="text-xl sm:text-3xl font-black uppercase tracking-tighter italic text-white mx-8 flex items-center gap-4">
+            🔥 WE ARE OPEN <span class="text-[#FFCC00]">•</span> 20% DISCOUNT FOR FAST & HOT DELIVERY TODAY
+          </span>
+          <span class="text-[#E60000] text-2xl sm:text-4xl font-black mx-4">///</span>    
+          
+          <span class="text-xl sm:text-3xl font-black uppercase tracking-tighter italic text-white mx-8 flex items-center gap-4">
+            🔥 WE ARE OPEN <span class="text-[#FFCC00]">•</span> 20% DISCOUNT FOR FAST & HOT DELIVERY TODAY
+          </span>
+          <span class="text-[#E60000] text-2xl sm:text-4xl font-black mx-4">///</span> 
+        </div>
+      </div>    
+    </section>    
+    
+    <!-- Signature Bestsellers -->    
+    <section class="py-16 sm:py-24 bg-white reveal" id="home-bestsellers-section">    
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">    
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 sm:mb-12 gap-4">    
+          <div>    
+            <h2 class="text-[#E60000] font-bold tracking-widest uppercase mb-2 text-sm sm:text-base">Bestsellers</h2>    
+            <h3 class="text-4xl sm:text-5xl font-black uppercase tracking-tighter text-[#1A1A1A] italic">The Signature Three</h3>    
+          </div>    
+          <button onclick="navigateTo('menu')" class="hidden md:flex items-center gap-1 font-bold text-[#1A1A1A] hover:text-[#E60000] transition-colors bg-zinc-100 px-5 py-2.5 rounded-full">    
+            Full Menu <i class="ph-bold ph-caret-right text-lg"></i>    
+          </button>    
+        </div>    
+    
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8" id="home-bestsellers-container">    
+           <!-- Populated by JavaScript -->    
+        </div>    
+    
+        <div class="mt-8 text-center md:hidden">    
+          <button onclick="navigateTo('menu')" class="bg-zinc-100 text-[#1A1A1A] font-bold py-4 rounded-full flex items-center justify-center gap-2 w-full active:bg-zinc-200">    
+            View Full Menu <i class="ph-bold ph-arrow-right text-lg"></i>    
+          </button>    
+        </div>    
+      </div>    
+    </section>    
+    
+    <!-- Quality Pillars -->    
+    <section class="py-16 sm:py-24 bg-[#1A1A1A] text-white reveal" id="about">    
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">    
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 px-4">    
+          <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tighter mb-4 sm:mb-6 italic">About <span class="text-[#E60000]">Us.</span></h2>    
+          <p class="text-base sm:text-lg text-white/70 font-medium">    
+            We don't do fast food. We do good food, fast. Every ingredient is sourced locally and prepared fresh daily in our kitchens right here in Addis Ababa. No shortcuts.    
+          </p>    
+        </div>    
+    
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-12 text-center">    
+          <div class="flex flex-col items-center group">    
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-zinc-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#E60000] group-hover:-translate-y-2 transition-all duration-300 shadow-lg">    
+              <i class="ph-fill ph-leaf text-[#FFCC00] text-3xl group-hover:text-white transition-colors"></i>    
+            </div>    
+            <h4 class="font-black text-lg sm:text-xl tracking-tight mb-1 sm:mb-2 uppercase italic">100% Local Beef</h4>    
+            <p class="text-xs sm:text-sm text-white/60">Sourced from top Ethiopian farms, never frozen.</p>    
+          </div>    
+          <div class="flex flex-col items-center group">    
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-zinc-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#E60000] group-hover:-translate-y-2 transition-all duration-300 shadow-lg">    
+              <div class="font-black text-2xl sm:text-3xl">🍞</div>    
+            </div>    
+            <h4 class="font-black text-lg sm:text-xl tracking-tight mb-1 sm:mb-2 uppercase italic">House Buns</h4>    
+            <p class="text-xs sm:text-sm text-white/60">Baked fresh every morning for the perfect squish.</p>    
+          </div>    
+          <div class="flex flex-col items-center group">    
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-zinc-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#E60000] group-hover:-translate-y-2 transition-all duration-300 shadow-lg">    
+              <i class="ph-fill ph-fire text-[#FFCC00] text-3xl group-hover:text-white transition-colors"></i>    
+            </div>    
+            <h4 class="font-black text-lg sm:text-xl tracking-tight mb-1 sm:mb-2 uppercase italic">Smash Grilled</h4>    
+            <p class="text-xs sm:text-sm text-white/60">Caramelized crust on the outside, juicy inside.</p>    
+          </div>    
+          <div class="flex flex-col items-center group">    
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-zinc-800 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#E60000] group-hover:-translate-y-2 transition-all duration-300 shadow-lg">    
+              <div class="font-black text-2xl sm:text-3xl">🍅</div>    
+            </div>    
+            <h4 class="font-black text-lg sm:text-xl tracking-tight mb-1 sm:mb-2 uppercase italic">Secret Sauce</h4>    
+            <p class="text-xs sm:text-sm text-white/60">Our signature blend. You'll want extra.</p>    
+          </div>    
+        </div>    
+      </div>    
+    </section>    
+    
+    <!-- 3D Reviews Section -->    
+    <section class="py-16 sm:py-24 bg-[#F9F8F6] relative overflow-hidden reveal" id="reviews" style="perspective: 1000px;">    
+      <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_#E60000_1px,_transparent_1px)] bg-[size:32px_32px] opacity-[0.03]"></div>    
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">    
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">    
+          <h2 class="text-[#E60000] font-bold tracking-widest uppercase mb-2 text-sm sm:text-base">Testimonials</h2>    
+          <h3 class="text-4xl sm:text-5xl font-black uppercase tracking-tighter text-[#1A1A1A] italic">Customer <span class="text-[#FFCC00]">Love</span></h3>    
+        </div>    
+            
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">    
+          <div class="review-card bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/5 flex flex-col h-full cursor-default relative">    
+            <i class="ph-fill ph-quotes text-[#F9F8F6] text-8xl absolute top-4 right-4 z-0"></i>    
+            <div class="flex text-[#FFCC00] mb-4 text-xl relative z-10">    
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>    
+            </div>    
+            <p class="italic font-medium text-[#1A1A1A]/80 mb-8 flex-1 relative z-10 text-lg">"Absolutely the best smash burger in Addis! The Double Joy is incredibly juicy and the signature sauce is addictive."</p>    
+            <div class="flex items-center gap-4 relative z-10">    
+              <div class="w-12 h-12 bg-zinc-200 rounded-full flex items-center justify-center font-black text-zinc-500">A</div>    
+              <div>    
+                <h4 class="font-black uppercase tracking-tight text-sm">Amanuel T.</h4>    
+                <p class="text-xs text-[#1A1A1A]/50 font-bold flex items-center gap-1"><i class="ph-fill ph-google-logo text-[#4285F4]"></i> Google Review</p>    
+              </div>    
+            </div>    
+          </div>    
+              
+          <div class="review-card bg-[#1A1A1A] text-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(230,0,0,0.1)] border-2 border-[#E60000] flex flex-col h-full cursor-default relative">    
+            <i class="ph-fill ph-quotes text-zinc-800 text-8xl absolute top-4 right-4 z-0"></i>    
+            <div class="flex text-[#FFCC00] mb-4 text-xl relative z-10">    
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>    
+            </div>    
+            <p class="italic font-medium text-white/80 mb-8 flex-1 relative z-10 text-lg">"Fast delivery via 664 and the food arrived piping hot. The crispy chicken sub is a complete game changer."</p>    
+            <div class="flex items-center gap-4 relative z-10">    
+              <div class="w-12 h-12 bg-zinc-700 rounded-full flex items-center justify-center font-black text-zinc-400">S</div>    
+              <div>    
+                <h4 class="font-black uppercase tracking-tight text-sm text-white">Sarah M.</h4>    
+                <p class="text-xs text-white/50 font-bold flex items-center gap-1"><i class="ph-fill ph-google-logo text-[#4285F4]"></i> Google Review</p>    
+              </div>    
+            </div>    
+          </div>    
+    
+          <div class="review-card bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/5 flex flex-col h-full cursor-default relative">    
+            <i class="ph-fill ph-quotes text-[#F9F8F6] text-8xl absolute top-4 right-4 z-0"></i>    
+            <div class="flex text-[#FFCC00] mb-4 text-xl relative z-10">    
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>    
+            </div>    
+            <p class="italic font-medium text-[#1A1A1A]/80 mb-8 flex-1 relative z-10 text-lg">"Great vibe at the Bole branch. You can literally taste the fresh local beef. Highly recommended!"</p>    
+            <div class="flex items-center gap-4 relative z-10">    
+              <div class="w-12 h-12 bg-zinc-200 rounded-full flex items-center justify-center font-black text-zinc-500">D</div>    
+              <div>    
+                <h4 class="font-black uppercase tracking-tight text-sm">Dawit B.</h4>    
+                <p class="text-xs text-[#1A1A1A]/50 font-bold flex items-center gap-1"><i class="ph-fill ph-google-logo text-[#4285F4]"></i> Google Review</p>    
+              </div>    
+            </div>    
+          </div>    
+        </div>    
+      </div>    
+    </section>    
+    
+    <!-- Banner CTA -->    
+    <section class="py-16 sm:py-20 bg-[#FFCC00] relative overflow-hidden reveal" id="home-cta-banner">    
+      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#E60000_2px,_transparent_2px)] bg-[size:24px_24px]"></div>    
+      <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">    
+        <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-[#1A1A1A] uppercase tracking-tighter mb-8 italic">Craving Yet?</h2>    
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">    
+          <a href="tel:664" target="_top" class="bg-white text-[#1A1A1A] p-5 sm:p-6 rounded-2xl font-black text-lg sm:text-xl uppercase tracking-tight flex flex-col items-center justify-center gap-2 hover:bg-zinc-50 transition-colors shadow-2xl border-2 border-transparent hover:border-[#E60000] cursor-pointer">    
+            <span class="text-[#E60000]"><i class="ph-fill ph-phone text-4xl"></i></span>    
+            Order Delivery via Call    
+            <span class="text-xs sm:text-sm text-[#1A1A1A]/50 font-medium normal-case">Fastest delivery to your door (664)</span>    
+          </a>    
+          <button onclick="navigateTo('locations')" class="bg-[#1A1A1A] text-white p-5 sm:p-6 rounded-2xl font-black text-lg sm:text-xl uppercase tracking-tight flex flex-col items-center justify-center gap-2 hover:bg-[#E60000] transition-colors shadow-2xl border-2 border-transparent">    
+            <span class="text-white"><i class="ph-fill ph-map-pin text-4xl"></i></span>    
+            Pickup at Branch    
+            <span class="text-xs sm:text-sm text-white/70 font-medium normal-case">12 locations across Addis</span>    
+          </button>    
+        </div>    
+      </div>    
+    </section>    
+  </main>    
+    
+  <!-- ========================================== -->    
+  <!-- 2. MENU PAGE VIEW                          -->    
+  <!-- ========================================== -->    
+  <main id="page-menu" class="page-view hidden pt-24 min-h-screen bg-[#F9F8F6] pb-24">    
+    <div class="bg-[#1A1A1A] text-white pt-12 pb-6 px-4 reveal">    
+      <div class="max-w-7xl mx-auto text-center">    
+        <h1 class="text-4xl sm:text-6xl font-black italic uppercase tracking-tighter mb-4">Our <span class="text-[#E60000]">Menu</span></h1>    
+        <p class="text-white/70 font-medium text-sm sm:text-base">Freshly smashed, stacked, and ready to enjoy. Slices of pure goodness!</p>    
+        <p class="text-[#FFCC00]/90 text-xs mt-2 font-black tracking-wide uppercase italic">⚠️ Note: All menu prices exclude VAT</p>
+      </div>    
+    </div>    
+    
+    <div id="sticky-menu-tabs" class="sticky top-[72px] sm:top-[88px] z-30 bg-white/90 backdrop-blur-md border-b border-black/10 shadow-sm reveal">    
+      <div class="max-w-7xl mx-auto px-4">    
+        <div id="category-tabs" class="flex overflow-x-auto hide-scroll py-4 gap-2 sm:gap-4">    
+          <!-- Populated by JavaScript -->    
+        </div>    
+      </div>    
+    </div>    
+    
+    <div class="max-w-7xl mx-auto px-4 py-12">    
+      <div id="menu-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 reveal">    
+        <!-- Populated by JavaScript -->    
+      </div>    
+    </div>    
+  </main>    
+    
+  <!-- ========================================== -->    
+  <!-- 3. LOCATIONS PAGE VIEW                     -->    
+  <!-- ========================================== -->    
+  <main id="page-locations" class="page-view hidden pt-24 min-h-screen bg-[#F9F8F6] pb-24">    
+    <div class="bg-[#1A1A1A] text-white pt-12 pb-16 px-4 relative overflow-hidden reveal">    
+      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_#E60000_2px,_transparent_2px)] bg-[size:24px_24px]"></div>    
+      <div class="max-w-7xl mx-auto text-center relative z-10">    
+        <h1 class="text-4xl sm:text-6xl font-black italic uppercase tracking-tighter mb-4">Find Your <span class="text-[#FFCC00]">Local</span></h1>    
+        <p class="text-white/70 font-medium text-lg">12 branches across Addis Ababa. Always fresh.</p>    
+      </div>    
+    </div>    
+    
+    <div class="max-w-7xl mx-auto px-4 py-12 -mt-8 relative z-20 reveal">    
+      <div id="locations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">    
+        <!-- Populated by JavaScript -->    
+      </div>    
+    </div>    
+  </main>    
+    
+  <!-- ========================================== -->    
+  <!-- PERSISTENT "ORDER NOW" FAB BUTTON          -->    
+  <!-- ========================================== -->    
+  <button id="floating-order-btn" onclick="openGlobalOrderModal()" class="fixed bottom-6 left-4 sm:left-6 z-40 bg-[#E60000] text-white px-5 py-3 rounded-full font-black text-sm uppercase tracking-wide shadow-2xl transform -skew-x-6 hover:scale-105 transition-all duration-300 flex items-center gap-2 border-2 border-white cursor-pointer" aria-label="Open ordering options">    
+    <span class="transform skew-x-6 flex items-center gap-2"><i class="ph-bold ph-phone text-xl"></i> Order Now</span>    
+  </button>    
+    
+  <!-- ========================================== -->    
+  <!-- GLOBAL ORDER MODAL (Direct Call Directives) -->    
+  <!-- ========================================== -->    
+  <div id="global-order-modal" class="fixed inset-0 z-[110] flex items-end sm:items-center justify-center p-4 hidden">    
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeGlobalOrderModal()"></div>    
+    <div class="relative bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl flex flex-col p-6 sm:p-8 animate-slide-up border border-black/5">    
+      <h3 class="text-2xl font-black uppercase tracking-tight mb-4 text-center italic text-[#1A1A1A]">Call to Order</h3>    
+      <p class="text-sm text-zinc-500 font-medium text-center mb-6">Choose how you'd like to get your fresh burgers today:</p>
+      <div class="space-y-4">    
+        <a href="tel:664" class="w-full bg-[#E60000] text-white p-4 rounded-xl font-black text-lg uppercase tracking-tight flex items-center justify-center gap-3 hover:bg-[#CC0000] transition-all transform -skew-x-3 shadow-md">    
+           <span class="flex items-center gap-2"><i class="ph-bold ph-phone text-2xl"></i> Call Delivery (664)</span>    
+        </a>    
+        <button onclick="toggleBranchSelectorDropdown()" class="w-full bg-[#1A1A1A] text-white p-4 rounded-xl font-black text-lg uppercase tracking-tight flex items-center justify-center gap-3 hover:bg-black transition-all transform -skew-x-3 shadow-md">    
+           <span class="flex items-center gap-2"><i class="ph-bold ph-storefront text-2xl"></i> Branch Pickup Call</span>    
+        </button>    
+      </div>    
+
+      <div id="modal-branch-selector" class="hidden mt-4 space-y-2 border-t border-zinc-100 pt-4">
+        <label for="branch-select-dial" class="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">Select Branch to Call</label>
+        <select id="branch-select-dial" onchange="triggerDirectBranchCall(this.value)" class="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:border-[#E60000] font-bold transition-colors bg-zinc-50">
+          <option value="" disabled selected>-- Select nearest branch --</option>
+        </select>
+      </div>
+
+      <button onclick="closeGlobalOrderModal()" class="mt-6 text-[#1A1A1A]/50 font-bold uppercase text-sm hover:text-[#1A1A1A] w-full text-center transition-colors">Cancel</button>    
+    </div>    
+  </div>    
+    
+  <!-- ========================================== -->    
+  <!-- SCROLL TO TOP BUTTON                       -->    
+  <!-- ========================================== -->    
+  <button id="scrollToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-4 sm:right-6 bg-[#FFCC00] text-[#1A1A1A] w-12 h-12 flex items-center justify-center rounded-full shadow-xl opacity-0 translate-y-10 transition-all duration-300 z-40 hover:bg-[#E60000] hover:text-white pointer-events-none cursor-pointer border-2 border-white" aria-label="Scroll back to top">    
+    <i class="ph-bold ph-caret-up text-xl"></i>    
+  </button>    
+    
+  <!-- ========================================== -->    
+  <!-- ITEM CALL MODAL OVERLAY                    -->    
+  <!-- ========================================== -->    
+  <div id="item-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden">    
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>    
+    <div class="relative bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl flex flex-col max-h-[90vh] animate-slide-up">    
+      <div class="h-48 relative bg-zinc-100 shrink-0">    
+        <img id="modal-img" src="" alt="" class="w-full h-full object-cover" />    
+        <button onclick="closeModal()" class="absolute top-4 right-4 bg-white/90 p-2 rounded-full hover:bg-white transition-colors shadow-md" aria-label="Close food description modal">    
+          <i class="ph-bold ph-x text-lg"></i>    
+        </button>    
+      </div>    
+      <div class="p-6 overflow-y-auto hide-scroll flex flex-col">    
+        <h2 id="modal-title" class="text-2xl font-black italic uppercase tracking-tighter mb-1"></h2>    
+        <p id="modal-desc" class="text-[#1A1A1A]/60 font-medium mb-3"></p>    
+        <div id="modal-price" class="text-xl font-black text-[#E60000] mb-5"></div>
+
+        <div class="space-y-3 pt-4 border-t border-zinc-100 mt-auto">
+          <a href="tel:664" class="w-full bg-[#E60000] text-white font-bold py-3.5 rounded-full hover:bg-[#CC0000] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-[#E60000]/20">
+            <i class="ph-bold ph-phone text-lg"></i> Call Delivery: 664
+          </a>
+          <button onclick="toggleModalPickupSelector()" class="w-full bg-zinc-100 text-zinc-800 font-bold py-3.5 rounded-full hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2">
+            <i class="ph-bold ph-storefront text-lg"></i> Call Branch for Pickup
+          </button>
+
+          <div id="modal-pickup-selector" class="hidden mt-3 p-3 bg-zinc-50 rounded-2xl border border-zinc-100 animate-slide-up">
+            <label for="modal-branch-dial-select" class="block text-[10px] font-black uppercase tracking-wider text-zinc-500 mb-2">Select Branch to Call</label>
+            <select id="modal-branch-dial-select" onchange="triggerDirectBranchCall(this.value)" class="w-full px-3 py-2 rounded-xl border border-zinc-200 text-sm font-bold bg-white">
+              <option value="" disabled selected>-- Select closest branch --</option>
+            </select>
+          </div>
+        </div>
+      </div>    
+    </div>    
+  </div>    
+    
+  <!-- ========================================== -->    
+  <!-- SHARED FOOTER                              -->    
+  <!-- ========================================== -->    
+  <footer class="bg-[#0A0A0A] text-white pt-16 sm:pt-20 pb-24 sm:pb-20 border-t-4 border-[#E60000] reveal">    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">    
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12 mb-12 sm:mb-16">    
+        <div>    
+          <div class="flex items-center gap-3 mb-6 cursor-pointer" onclick="navigateTo('home')">    
+            <div class="relative w-10 h-10 flex items-center justify-center shrink-0 bg-white rounded-full overflow-hidden border-2 border-[#FFCC00]">    
+              <img src="1000024041.jpg" alt="IN-JOY Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.outerHTML='<svg viewBox=\'0 0 500 500\' class=\'w-full h-full bg-white\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'250\' cy=\'250\' r=\'170\' stroke=\'#FFCC00\' stroke-width=\'28\' fill=\'none\' /><path d=\'M115 420 L235 190 Q255 140 275 260 Q295 330 335 190 L385 80\' stroke=\'#E60000\' stroke-width=\'46\' stroke-linecap=\'square\' stroke-linejoin=\'miter\' stroke-miterlimit=\'4\' fill=\'none\' /></svg>';" />    
+            </div>    
+            <div class="flex flex-col leading-none">    
+              <span class="font-black text-xl tracking-tighter uppercase text-white italic transform -skew-x-6">IN-JOY</span>    
+              <span class="font-bold text-[9px] tracking-[0.2em] uppercase text-white/70">Burger</span>    
+            </div>    
+          </div>    
+          <p class="text-white/50 font-medium mb-6 text-sm pr-4">    
+            Redefining the burger experience in Addis Ababa. Big taste, real joy, every single time.    
+          </p>    
+          <div class="flex gap-4">    
+            <a href="https://www.instagram.com/in.joyburger?igsh=MTJ5Z28wempmcTg0bA==" target="_blank" rel="noreferrer" class="w-10 h-10 bg-zinc-900 rounded-full flex items-center justify-center hover:bg-[#E60000] transition-colors text-white" aria-label="Visit our Instagram page">    
+              <i class="ph-bold ph-instagram-logo text-lg" aria-hidden="true"></i>    
+            </a>    
+            <a href="https://t.me/InJoyBurger" target="_blank" rel="noreferrer" class="w-10 h-10 bg-zinc-900 rounded-full flex items-center justify-center hover:bg-[#E60000] transition-colors text-white" aria-label="Visit our Telegram Channel">    
+              <i class="ph-bold ph-telegram-logo text-lg" aria-hidden="true"></i>    
+            </a>    
+            <a href="https://vt.tiktok.com/ZSCtTqGHL/" target="_blank" rel="noreferrer" class="w-10 h-10 bg-zinc-900 rounded-full flex items-center justify-center hover:bg-[#E60000] transition-colors text-white" aria-label="Visit our TikTok page">    
+              <i class="ph-bold ph-tiktok-logo text-lg" aria-hidden="true"></i>    
+            </a>    
+          </div>    
+        </div>    
+    
+        <div>    
+          <h4 class="font-black text-lg mb-4 sm:mb-6 uppercase tracking-wider text-white italic">Explore</h4>    
+          <ul class="space-y-3 sm:space-y-4 text-white/60 font-medium text-sm">    
+            <li><button onclick="navigateTo('home')" class="hover:text-[#FFCC00] transition-colors">Home Page</button></li>    
+            <li><button onclick="navigateTo('menu')" class="hover:text-[#FFCC00] transition-colors">Full Menu</button></li>    
+            <li><button onclick="navigateTo('locations')" class="hover:text-[#FFCC00] transition-colors">Locations & Hours</button></li>    
+          </ul>    
+        </div>    
+    
+        <div>    
+          <h4 class="font-black text-lg mb-4 sm:mb-6 uppercase tracking-wider text-white italic">Support</h4>    
+          <ul class="space-y-3 sm:space-y-4 text-white/60 font-medium text-sm">    
+            <li><a href="tel:664" target="_top" class="hover:text-[#FFCC00] transition-colors">Call 664 to Order</a></li>    
+          </ul>    
+        </div>    
+      </div>    
+    
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-xs sm:text-sm font-medium text-center md:text-left">    
+        <p>© 2026 IN-JOY Burger Addis Ababa. All rights reserved.</p>    
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-6">    
+          <span class="hover:text-white transition-colors cursor-pointer">Privacy Policy</span>    
+        </div>    
+      </div>    
+    </div>    
+  </footer>    
+    
+  <!-- ========================================== -->    
+  <!-- JAVASCRIPT (FLOW, DOCKING & ACTIONS)       -->    
+  <!-- ========================================== -->    
+  <script>    
+    const MENU_CATEGORIES = ['Burgers', 'Chicken Sandwich', 'Fried Chicken', 'Sandwiches'];    
+    
+    // =========================================================================
+    // 📸 HOW TO ADD YOUR OWN IMAGES:
+    // Change the text inside the `img: '...'` quotes to the name of your file.
+    // Example: If you have an image named "my-burger.jpg", change it to:
+    // img: 'my-burger.jpg'
+    // Ensure all your image files are saved in the exact same folder as this index.html file!
+    // =========================================================================
+
+    const MENU_ITEMS = [    
+      // 1. Big Joy using the image you attached
+      { id: 1, category: 'Burgers', name: 'Big Joy', price: 778.26, img: '1000024072.jpg', desc: '2 Beef, 2 chicken, 2 cheese layers on fresh toasted bun', tags: ['Signature'] },    
+      
+      // -> Replace 'joy-burger.jpg' with your actual image filename
+      { id: 2, category: 'Burgers', name: 'Joy', price: 499.99, img: 'joy-burger.jpg', desc: 'Beef, chicken, cheese combo stack', tags: [] },    
+      
+      // -> Replace 'deluxe-burger.jpg' with your actual image filename
+      { id: 3, category: 'Burgers', name: 'Deluxe', price: 565.21, img: 'deluxe-burger.jpg', desc: '2 Beef, 2 beef slice, 2 cheese, egg richness', tags: ['Popular'] },    
+      
+      // -> Replace 'jr-deluxe.jpg' with your actual image filename
+      { id: 4, category: 'Burgers', name: 'Jr. Deluxe', price: 491.30, img: 'jr-deluxe.jpg', desc: 'Beef, beef slice, cheese, egg', tags: [] },    
+      
+      // -> Replace 'double-burger.jpg' with your actual image filename
+      { id: 5, category: 'Burgers', name: 'Double', price: 495.65, img: 'double-burger.jpg', desc: '2 Beef patties, 2 melted cheese layers', tags: [] },    
+      
+      // -> Replace 'cheese-burger.jpg' with your actual image filename
+      { id: 6, category: 'Burgers', name: 'Cheese Burger', price: 395.65, img: 'cheese-burger.jpg', desc: 'Juicy local beef, classic cheese layer', tags: [] },    
+      
+      // -> Replace 'classic-burger.jpg' with your actual image filename
+      { id: 7, category: 'Burgers', name: 'Burger', price: 347.82, img: 'classic-burger.jpg', desc: 'Single smashed seasoned beef patty', tags: [] },    
+      
+      // -> Replace 'crispy-sub.jpg' with your actual image filename
+      { id: 8, category: 'Chicken Sandwich', name: 'Crispy', price: 499.99, img: 'crispy-sub.jpg', desc: 'Crisp golden fried chicken inside toasted sub roll', tags: [] },    
+      
+      // -> Replace 'killer-sub.jpg' with your actual image filename
+      { id: 9, category: 'Chicken Sandwich', name: 'Killer', price: 495.65, img: 'killer-sub.jpg', desc: 'Flame grilled chicken strips inside toasted sub roll', tags: ['Spicy'] },    
+      
+      // -> Replace 'fried-wings.jpg' with your actual image filename
+      { id: 10, category: 'Fried Chicken', name: 'Wings', price: 430.43, img: 'fried-wings.jpg', desc: '4 pieces of crispy fried chicken wings with dip', tags: [] },    
+      
+      // -> Replace 'chicken-nuggets.jpg' with your actual image filename
+      { id: 11, category: 'Fried Chicken', name: 'Nuggets', price: 443.47, img: 'chicken-nuggets.jpg', desc: 'Lightly seasoned crispy chicken nuggets', tags: [] },    
+      
+      // -> Replace 'fried-drumsticks.jpg' with your actual image filename
+      { id: 12, category: 'Fried Chicken', name: 'Drumstick', price: 469.56, img: 'fried-drumsticks.jpg', desc: '2 pieces of deep fried crispy chicken drumsticks', tags: [] },    
+      
+      // -> Replace 'ham-cheese-sand.jpg' with your actual image filename
+      { id: 13, category: 'Sandwiches', name: 'Ham & Cheese', price: 239.13, img: 'ham-cheese-sand.jpg', desc: 'Ham, premium cheese, and house mayo dressing', tags: [] },    
+      
+      // -> Replace 'egg-sand.jpg' with your actual image filename
+      { id: 14, category: 'Sandwiches', name: 'Egg Sand', price: 191.30, img: 'egg-sand.jpg', desc: 'Fluffy scrambled egg spread on bread', tags: [] },    
+      
+      // -> Replace 'veg-sand.jpg' with your actual image filename
+      { id: 15, category: 'Sandwiches', name: 'Veg Sand', price: 165.21, img: 'veg-sand.jpg', desc: 'Crisp seasonal fresh vegetables and light spread', tags: ['Veg'] },    
+      
+      // -> Replace 'tuna-sand.jpg' with your actual image filename
+      { id: 16, category: 'Sandwiches', name: 'Tuna Sand', price: 299.99, img: 'tuna-sand.jpg', desc: 'Tuna flakes tossed in light mayo on sliced bread', tags: [] },    
+    ];    
+    
+    const LOCATIONS = [    
+      { id: 1, name: 'Bole Edna Mall', phone: '0940878787', link: 'https://maps.app.goo.gl/jjGKkzDqkEjFTxjk7?g_st=ac' },    
+      { id: 2, name: 'Bisrate Gabriel', phone: '0940878787', link: 'https://maps.app.goo.gl/iuge77rMVPe23ccr8?g_st=ac' },    
+      { id: 3, name: 'Jemo Michael', phone: '0931638787', link: 'https://maps.app.goo.gl/BF637fF8VTrPbk4t7?g_st=ac' },    
+      { id: 4, name: 'Mesqel Flower', phone: '0984222229', link: 'https://maps.app.goo.gl/zCVBxtyTLCKoUEnKA?g_st=ac' },    
+      { id: 5, name: 'Bethel', phone: '0962544444', link: 'https://maps.app.goo.gl/kWndmZfw5ptH94ic9' },    
+      { id: 6, name: 'CMC', phone: '0931638888', link: 'https://maps.app.goo.gl/EpTbApt7yrppEBM3A?g_st=ac' },    
+      { id: 7, name: '4 Kilo', phone: '0963544444', link: 'https://maps.app.goo.gl/2H2khLk2waGGiqfJA?g_st=ac' },    
+      { id: 8, name: 'Bole Airport', phone: '0968544444', link: 'https://maps.app.goo.gl/ZynbybW3mSv7Cqjw6?g_st=ac' },    
+      { id: 9, name: 'Summit', phone: '0973113109', link: 'https://maps.app.goo.gl/F9FBwqvuttP8sm7u8?g_st=ac' },    
+      { id: 10, name: 'Friendship Park', phone: '0969544444', link: 'https://maps.app.goo.gl/Ugd4QALm44Q5aokc6?g_st=ac' },    
+      { id: 11, name: 'Golagul', phone: '0983222229', link: 'https://maps.app.goo.gl/k7w5uE1PeVV8pUoc9?g_st=ac' },    
+      { id: 12, name: 'Tulu Dimtu', phone: '0946246624', link: 'https://maps.app.goo.gl/znmYuN4fKyqygCky7' },    
+    ];
+    
+    let activeCategory = MENU_CATEGORIES[0];    
+    let selectedItemObj = null;    
+    let lastScrollTop = 0;    
+    
+    const revealObserver = new IntersectionObserver((entries) => {    
+      entries.forEach(entry => {    
+        if (entry.isIntersecting) {    
+          entry.target.classList.add('active');    
+        }    
+      });    
+    }, { threshold: 0.1 });    
+    
+    function observeReveals() {    
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));    
+    }    
+    
+    const dynamicFabObserver = new IntersectionObserver((entries) => {
+      const fab = document.getElementById('floating-order-btn');
+      if (!fab) return;
+
+      let isPrimaryActionInView = false;
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          isPrimaryActionInView = true;
+        }
+      });
+
+      if(isPrimaryActionInView) {
+        fab.classList.add('opacity-0', 'pointer-events-none');
+        fab.classList.remove('opacity-100');
+      } else {
+        fab.classList.remove('opacity-0', 'pointer-events-none');
+        fab.classList.add('opacity-100');
+      }
+    }, { threshold: 0.05 });
+
+    function initDynamicFabObserver() {
+      const target1 = document.getElementById('home-primary-buttons');
+      const target2 = document.getElementById('home-bestsellers-section');
+      const target3 = document.getElementById('sticky-menu-tabs');
+      const target4 = document.getElementById('home-cta-banner');
+
+      if(target1) dynamicFabObserver.observe(target1);
+      if(target2) dynamicFabObserver.observe(target2);
+      if(target3) dynamicFabObserver.observe(target3);
+      if(target4) dynamicFabObserver.observe(target4);
+    }
+    
+    function init3DEffects() {    
+      document.querySelectorAll('.review-card').forEach(card => {    
+        card.addEventListener('mousemove', e => {    
+          const rect = card.getBoundingClientRect();    
+          const x = e.clientX - rect.left;    
+          const y = e.clientY - rect.top;    
+          const xRotate = -((y - rect.height/2) / rect.height * 8);     
+          const yRotate = (x - rect.width/2) / rect.width * 8;    
+          card.style.transform = `rotateX(${xRotate}deg) rotateY(${yRotate}deg) scale3d(1.01, 1.01, 1.01)`;    
+        });    
+        card.addEventListener('mouseleave', () => {    
+          card.style.transform = 'rotateX(0) rotateY(0) scale3d(1, 1, 1)';    
+        });    
+      });    
+    }    
+    
+    function navigateTo(pageId) {    
+      document.querySelectorAll('.page-view').forEach(el => {    
+        el.classList.add('hidden');    
+        el.classList.remove('block');    
+      });    
+      document.getElementById('page-' + pageId).classList.remove('hidden');    
+      document.getElementById('page-' + pageId).classList.add('block');    
+          
+      document.getElementById('mobile-menu').classList.remove('open');    
+      document.getElementById('menu-icon').classList.replace('ph-x', 'ph-list');    
+          
+      window.scrollTo({ top: 0, behavior: 'instant' });    
+      updateNavbar(pageId);    
+      setTimeout(observeReveals, 100); 
+    }    
+    
+    function toggleMobileMenu() {    
+      const menu = document.getElementById('mobile-menu');    
+      const icon = document.getElementById('menu-icon');    
+      if (menu.classList.contains('open')) {    
+        menu.classList.remove('open');    
+        icon.classList.replace('ph-x', 'ph-list');    
+      } else {    
+        menu.classList.add('open');    
+        icon.classList.replace('ph-list', 'ph-x');    
+      }    
+    }    
+    
+    // --- Optimized Scroll Listener Fixes the Lag ---
+    let isScrolling = false;
+    const navBarEl = document.getElementById('navbar');
+    const scrollBtnEl = document.getElementById('scrollToTopBtn');
+
+    window.addEventListener('scroll', () => {    
+      if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+          let st = window.pageYOffset || document.documentElement.scrollTop;    
+        
+          if (st > 50) {    
+            navBarEl.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-lg');    
+            navBarEl.classList.remove('bg-transparent');    
+          } else {    
+            navBarEl.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-lg');    
+            navBarEl.classList.add('bg-transparent');    
+          }    
+        
+          if (st < lastScrollTop && st > 300) {    
+            scrollBtnEl.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');    
+            scrollBtnEl.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');    
+          } else {    
+            scrollBtnEl.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');    
+            scrollBtnEl.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');    
+          }    
+          lastScrollTop = st <= 0 ? 0 : st;
+          isScrolling = false;
+        });
+        isScrolling = true;
+      }
+    });    
+    
+    function updateNavbar(currentPage) {    
+      document.querySelectorAll('.nav-link').forEach(link => {    
+        if(link.getAttribute('data-target') === currentPage) {    
+          link.classList.add('text-[#E60000]');    
+        } else {    
+          link.classList.remove('text-[#E60000]');    
+        }    
+      });    
+    }    
+    
+    function openGlobalOrderModal() {    
+      document.getElementById('global-order-modal').classList.remove('hidden');    
+    }    
+        
+    function closeGlobalOrderModal() {    
+      document.getElementById('global-order-modal').classList.add('hidden');    
+      document.getElementById('modal-branch-selector').classList.add('hidden');
+    }    
+
+    function toggleBranchSelectorDropdown() {
+      const drop = document.getElementById('modal-branch-selector');
+      drop.classList.toggle('hidden');
+    }
+
+    function triggerDirectBranchCall(phoneNum) {
+      if(phoneNum) {
+        window.open(`tel:${phoneNum}`, '_top');
+      }
+    }
+    
+    function renderHomeBestsellers() {    
+      const container = document.getElementById('home-bestsellers-container');    
+      if (!container) return;
+      container.innerHTML = '';    
+          
+      MENU_ITEMS.slice(0, 3).forEach((item, index) => {    
+        const isMiddle = index === 1;    
+        const bgClass = isMiddle ? 'bg-[#1A1A1A] text-white border-[#E60000] border-2 shadow-[#E60000]/10' : 'bg-[#F9F8F6] text-[#1A1A1A] border-black/5 hover:shadow-2xl';    
+        const imgBg = isMiddle ? '<div class="absolute top-0 right-0 w-32 h-32 bg-[#E60000] blur-3xl opacity-20 rounded-full"></div>' : '';    
+        const priceTag = isMiddle ? 'bg-[#FFCC00] text-[#1A1A1A]' : 'bg-white/95 backdrop-blur text-[#1A1A1A]';    
+        const btnClass = isMiddle ? 'bg-[#E60000] text-white hover:bg-[#FFCC00] hover:text-[#1A1A1A]' : 'bg-[#1A1A1A] text-white hover:bg-[#E60000]';    
+        const tagHtml = item.tags.length > 0 ? `<div class="absolute top-4 left-4 bg-[#E60000] text-white font-bold px-3 py-1 rounded-full text-[10px] uppercase tracking-wider flex items-center gap-1 shadow-md"><i class="ph-fill ph-fire"></i> ${item.tags[0]}</div>` : '';    
+    
+        // Only fails gracefully if image string is missing
+        const fallbackSrc = "this.onerror=null; this.src='';";
+
+        container.innerHTML += `    
+          <div onclick="openModal(${item.id})" class="rounded-3xl p-5 sm:p-6 shadow-xl transition-all duration-300 group cursor-pointer border ${bgClass}">    
+            <div class="relative h-56 sm:h-64 mb-6 rounded-2xl overflow-hidden flex items-center justify-center bg-zinc-200">    
+              ${imgBg}    
+              <img src="${item.img}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 bg-zinc-200" onerror="${fallbackSrc}" />    
+              <div class="absolute top-4 right-4 font-black px-4 py-1.5 rounded-full text-sm shadow-md ${priceTag}">    
+                ${item.price.toFixed(2)} ETB    
+              </div>    
+              ${tagHtml}    
+            </div>    
+            <h4 class="text-2xl font-black uppercase tracking-tight mb-2 italic">${item.name}</h4>    
+            <p class="font-medium mb-6 line-clamp-2 text-sm sm:text-base opacity-70">${item.desc}</p>    
+            <button class="w-full font-bold py-4 rounded-xl flex items-center justify-center gap-2 transform -skew-x-6 transition-colors ${btnClass}" aria-label="Open detail calling view for ${item.name}">    
+              <span class="transform skew-x-6 flex items-center gap-2"><i class="ph-bold ph-phone text-lg"></i> Call to Order</span>    
+            </button>    
+          </div>    
+        `;    
+      });    
+    }    
+    
+    function renderMenuCategories() {    
+      const tabs = document.getElementById('category-tabs');    
+      if (!tabs) return;
+      tabs.innerHTML = '';    
+      MENU_CATEGORIES.forEach(category => {    
+        const isActive = category === activeCategory;    
+        const classes = isActive ? 'bg-[#E60000] text-white shadow-md' : 'bg-zinc-100 text-[#1A1A1A] hover:bg-zinc-200';    
+        tabs.innerHTML += `    
+          <button onclick="setCategory('${category}')" class="whitespace-nowrap px-6 py-2 rounded-full font-bold text-sm sm:text-base transition-colors ${classes}">    
+            ${category}    
+          </button>    
+        `;    
+      });    
+    }    
+    
+    function setCategory(cat) {    
+      activeCategory = cat;    
+      renderMenuCategories();    
+      renderMenuGrid();    
+      setTimeout(observeReveals, 10);    
+    }    
+    
+    function renderMenuGrid() {    
+      const grid = document.getElementById('menu-grid');    
+      if (!grid) return;
+      grid.innerHTML = '';    
+          
+      const items = MENU_ITEMS.filter(i => i.category === activeCategory);    
+      if(items.length === 0) {    
+        grid.innerHTML = `<div class="col-span-full text-center py-20 text-[#1A1A1A]/50 font-medium"><i class="ph-bold ph-shopping-bag text-5xl mb-4 opacity-50"></i><p>More items coming soon.</p></div>`;    
+        return;    
+      }    
+    
+      items.forEach(item => {    
+        const tagHtml = item.tags.length > 0 ? `<div class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-[#E60000] text-white font-bold px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider shadow-md">${item.tags[0]}</div>` : '';    
+        const fallbackSrc = "this.onerror=null; this.src='';";
+
+        grid.innerHTML += `    
+          <div onclick="openModal(${item.id})" class="bg-white rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-lg shadow-black/5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group cursor-pointer border border-black/5 flex flex-col h-full reveal">    
+            <div class="relative h-40 sm:h-48 mb-4 rounded-xl sm:rounded-2xl overflow-hidden bg-zinc-100 flex items-center justify-center shrink-0">    
+              <img src="${item.img}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 bg-zinc-200" onerror="${fallbackSrc}" />    
+              ${tagHtml}    
+            </div>    
+            <div class="flex-1 flex flex-col">    
+              <h4 class="text-base sm:text-xl font-black uppercase tracking-tight mb-1 italic leading-tight">${item.name}</h4>    
+              <p class="text-[#1A1A1A]/60 font-medium text-xs sm:text-sm line-clamp-2 mb-4 flex-1">${item.desc}</p>    
+              <div class="flex items-center justify-between mt-auto">    
+                <span class="font-black text-[#1A1A1A] text-sm sm:text-lg">${item.price.toFixed(2)} ETB</span>    
+                <button class="w-8 h-8 sm:w-10 sm:h-10 bg-[#E60000] text-white rounded-full flex items-center justify-center group-hover:scale-105 transition-transform" aria-label="Open ordering detail modal for ${item.name}">    
+                  <i class="ph-bold ph-phone text-sm"></i>    
+                </button>    
+              </div>    
+            </div>    
+          </div>    
+        `;    
+      });    
+    }    
+    
+    function renderLocations() {    
+      const grid = document.getElementById('locations-grid');    
+      if (!grid) return;
+      grid.innerHTML = '';    
+      LOCATIONS.forEach(loc => {    
+        grid.innerHTML += `    
+          <div class="bg-white rounded-3xl p-6 shadow-xl border border-black/5 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col h-full reveal">    
+            <div class="flex items-center gap-4 mb-4">    
+              <div class="w-12 h-12 bg-[#FFCC00] rounded-2xl flex items-center justify-center shrink-0 shadow-md">    
+                <i class="ph-bold ph-storefront text-[#1A1A1A] text-2xl" aria-hidden="true"></i>    
+              </div>    
+              <div>
+                <h3 class="text-xl font-black uppercase tracking-tight italic leading-tight">${loc.name}</h3>    
+                <p class="text-xs text-[#E60000] font-black tracking-wider mt-1"><i class="ph-bold ph-phone"></i> ${loc.phone}</p>
+              </div>
+            </div>    
+            <div class="grid grid-cols-2 gap-2 mt-auto pt-4">    
+              <a href="tel:${loc.phone}" class="bg-[#E60000] text-white font-bold py-3 rounded-xl hover:bg-[#CC0000] transition-colors flex items-center justify-center gap-1.5 text-xs sm:text-sm shadow-md">
+                <i class="ph-bold ph-phone"></i> Direct Call
+              </a>
+              <a href="${loc.link}" target="_blank" rel="noreferrer" class="bg-zinc-100 text-[#1A1A1A] font-bold py-3 rounded-xl hover:bg-zinc-200 transition-colors flex items-center justify-center gap-1.5 text-xs sm:text-sm">    
+                <i class="ph-bold ph-map-trifold"></i> Map Location    
+              </a>    
+            </div>    
+          </div>    
+        `;    
+      });    
+    }    
+    
+    function populateBranchSelectors() {
+      const modalSelect = document.getElementById('modal-branch-dial-select');
+      const globalSelect = document.getElementById('branch-select-dial');
+      
+      const compileOptions = () => {
+        let optionsHtml = `<option value="" disabled selected>-- Select closest branch --</option>`;
+        LOCATIONS.forEach(loc => {
+          optionsHtml += `<option value="${loc.phone}">${loc.name} (${loc.phone})</option>`;
+        });
+        return optionsHtml;
+      };
+
+      if(modalSelect) modalSelect.innerHTML = compileOptions();
+      if(globalSelect) globalSelect.innerHTML = compileOptions();
+    }
+
+    function openModal(id) {    
+      selectedItemObj = MENU_ITEMS.find(i => i.id === id);    
+          
+      const modalImg = document.getElementById('modal-img');
+      modalImg.src = selectedItemObj.img;    
+      modalImg.onerror = function() {
+        this.onerror = null;
+        this.src = '';
+      };
+
+      document.getElementById('modal-title').innerText = selectedItemObj.name;    
+      document.getElementById('modal-desc').innerText = selectedItemObj.desc;    
+      document.getElementById('modal-price').innerText = `${selectedItemObj.price.toFixed(2)} ETB`;
+          
+      document.getElementById('modal-pickup-selector').classList.add('hidden');
+      document.getElementById('item-modal').classList.remove('hidden');    
+    }    
+    
+    function closeModal() {    
+      document.getElementById('item-modal').classList.add('hidden');    
+      selectedItemObj = null;    
+    }    
+
+    function toggleModalPickupSelector() {
+      const selector = document.getElementById('modal-pickup-selector');
+      selector.classList.toggle('hidden');
+    }
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      renderHomeBestsellers();    
+      renderMenuCategories();    
+      renderMenuGrid();    
+      renderLocations();    
+      populateBranchSelectors();
+      setTimeout(observeReveals, 100);    
+      setTimeout(initDynamicFabObserver, 500); 
+      init3DEffects();    
+    });
+  </script>    
+</body>    
+</html>
+
